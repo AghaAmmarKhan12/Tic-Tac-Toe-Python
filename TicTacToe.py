@@ -6,10 +6,8 @@ root = Tk() # tkinter functions moved to root variable
 root.geometry("300x100")
 root.title("Tic Tac Toe Game")
 
-
 def cleargui():
     root.destroy()
-
 
 Button(root, text="Press me to Start", font="Arial",background = "red", fg = "white", command=cleargui).pack()
 root.mainloop()
@@ -17,15 +15,6 @@ root.mainloop()
 
 def end(tkin):
     Label(tkin, text="Game Over", font="Arial", background = "red", fg = "black").pack()
-
-Pattern = {'1': ' ', '2': ' ', '3': ' ',
-           '4': ' ', '5': ' ', '6': ' ',
-           '7': ' ', '8': ' ', '9': ' '}
-New_Pattern = []
-
-for key in Pattern:
-    New_Pattern.append(key)
-
 
 def printPattern(board):
     print(' _____________')
@@ -35,18 +24,19 @@ def printPattern(board):
     print(' _____________')
     print(' | ' + board['7'] + ' | ' + board['8'] + ' | ' + board['9'] + ' |')
     print(' _____________')
+    
+Pattern = {'1': ' ', '2': ' ', '3': ' ',
+           '4': ' ', '5': ' ', '6': ' ',
+           '7': ' ', '8': ' ', '9': ' '}
+New_Pattern = []
 
-def reset():
-    restart = input(" Do you want to play Again? (Y/N) : ")
-    if restart == "y" or restart == "Y":
-        for key in New_Pattern:
-            Pattern[key] = " "
+for key in Pattern:
+    New_Pattern.append(key)
 
 player1 = input("Player 1 : ")
 player2 = input("Player 2 : ")
 ram = random.randint(1, 10)
-swap = ""
-
+swap = "0"
 
 def game():
     count = 0
@@ -56,8 +46,8 @@ def game():
     else:
         turn = player2
         swap = "2"
-    result = Tk()
-    while(count!=10):
+   
+    while(True):
         printPattern(Pattern)
         move = input("Player " + swap + " Turn, Enter Location : ")
         if move == "":
@@ -75,6 +65,7 @@ def game():
             if Pattern['7'] == Pattern['8'] == Pattern['9'] != ' ':  # across the top
                 printPattern(Pattern)
                 dis = "Player " + swap + " won."
+                result = Tk()
                 result.geometry("300x150")
                 result.title("Game Result")
                 Button(result, text=dis, command=end(result)).pack()
@@ -83,6 +74,7 @@ def game():
             elif Pattern['4'] == Pattern['5'] == Pattern['6'] != ' ':  # across the middle
                 printPattern(Pattern)
                 dis = "Player " + swap + "won."
+                result = Tk()
                 result.geometry("300x150")
                 result.title("Game Result")
                 Button(result, text=dis, command=end(result)).pack()
@@ -91,6 +83,7 @@ def game():
             elif Pattern['1'] == Pattern['2'] == Pattern['3'] != ' ':  # across the bottom
                 printPattern(Pattern)
                 dis = "Player " + swap + "won."
+                result = Tk()
                 result.geometry("300x150")
                 result.title("Game Result")
                 Button(result, text=dis, command=end(result)).pack()
@@ -99,6 +92,7 @@ def game():
             elif Pattern['1'] == Pattern['4'] == Pattern['7'] != ' ':  # down the left side
                 printPattern(Pattern)
                 dis = "Player " + swap + "won."
+                result = Tk()
                 result.geometry("300x150")
                 result.title("Game Result")
                 Button(result, text=dis, command=end(result)).pack()
@@ -107,6 +101,7 @@ def game():
             elif Pattern['2'] == Pattern['5'] == Pattern['8'] != ' ':  # down the middle
                 printPattern(Pattern)
                 dis = "Player " + swap + "won."
+                result = Tk()
                 result.geometry("300x150")
                 result.title("Game Result")
                 Button(result, text=dis, command=end(result)).pack()
@@ -115,6 +110,7 @@ def game():
             elif Pattern['3'] == Pattern['6'] == Pattern['9'] != ' ':  # down the right side
                 printPattern(Pattern)
                 dis = "Player " + swap + "won."
+                result = Tk()
                 result.geometry("300x150")
                 result.title("Game Result")
                 Button(result, text=dis, command=end(result)).pack()
@@ -123,6 +119,7 @@ def game():
             elif Pattern['7'] == Pattern['5'] == Pattern['3'] != ' ':  # diagonal
                 printPattern(Pattern)
                 dis = "Player " + swap + "won."
+                result = Tk()
                 result.geometry("300x150")
                 result.title("Game Result")
                 Button(result, text=dis, command=end(result)).pack()
@@ -131,6 +128,7 @@ def game():
             elif Pattern['1'] == Pattern['5'] == Pattern['9'] != ' ':  # diagonal
                 printPattern(Pattern)
                 dis = "Player " + swap + "won."
+                result = Tk()
                 result.geometry("300x150")
                 result.title("Game Result")
                 Button(result, text=dis, command=end(result)).pack()
@@ -141,7 +139,7 @@ def game():
         if count == 9:
             print("\nGame Over.\n")
             print("It's a Tie!!")
-
+            break
         # Now we have to change the player after every move.
         if swap == "1":
             turn = player2
@@ -152,9 +150,11 @@ def game():
 
             # Now we will ask if player wants to restart the game or not.
 
-    reset()
-    game()
-
+    restart = input("Do want to play Again?(y/n)")
+    if restart == "y" or restart == "Y":
+        for key in New_Pattern:
+            Pattern[key] = " "
+        game()
 
 if __name__ == "__main__":
     game()
