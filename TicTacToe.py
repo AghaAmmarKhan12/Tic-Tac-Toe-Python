@@ -12,7 +12,6 @@ def cleargui():
 Button(root, text="Press me to Start", font="Arial",background = "red", fg = "white", command=cleargui).pack()
 root.mainloop()
 
-
 def end(tkin):
     Label(tkin, text="Game Over", font="Arial", background = "red", fg = "black").pack()
 
@@ -24,7 +23,7 @@ def printPattern(board):
     print(' _____________')
     print(' | ' + board['7'] + ' | ' + board['8'] + ' | ' + board['9'] + ' |')
     print(' _____________')
-    
+
 Pattern = {'1': ' ', '2': ' ', '3': ' ',
            '4': ' ', '5': ' ', '6': ' ',
            '7': ' ', '8': ' ', '9': ' '}
